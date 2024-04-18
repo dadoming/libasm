@@ -1,0 +1,5 @@
+obj/
+assembly
+libasm.a
+ASSEMBLY_ROADMAP/*.o
+ASSEMBLY_ROADMAP/test

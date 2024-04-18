@@ -1,0 +1,17 @@
+-> x86-64
+---> System V AMD64 ABI
+-----> Solaris, Linux, BSD, macOS, OpenVMS (GCC, Intel C++ Compiler, Clang, Delphi)
+-------> RDI, RSI, RDX, RCX, R8, R9, [XYZ]MM0–7
+---------> RTL (C)
+-----------> Caller
+-------------> Stack aligned on 16 bytes boundary.
+				128 bytes red zone below stack.
+				The kernel interface uses RDI, RSI, RDX, R10, R8 and R9.
+				In C++, this is the first parameter.
+
+https://en.wikipedia.org/wiki/X86_calling_conventions
+
+The first argument is passed in rdi.
+The second argument is passed in rsi.
+The third argument is passed in rdx.
+Additional arguments are passed on the stack.

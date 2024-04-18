@@ -1,0 +1,43 @@
+
+https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture
+
+64-BIT: RAX, RBX, RCX, RSP, RBP, RDI, RSI, RDX
+32-BIT: EAX, EBX, ECX, ESP, EBP, EDI, ESI, EDX
+16-BIT: AX, BX, CX, SP, BP, DI, SI, DX
+8-BIT: AH, AL, BH, BL, CH, CL, SPL, BPL, DIL, SIL, DH, DL
+
+;Addressing Modes:
+
+;Register addressing:
+mov ax, bx ; moves the contents of bx into ax
+
+;Immediate addressing:
+mov ax, 5 ; moves the value 5 into ax
+
+;Direct addressing:
+.data
+var1 dw 5
+.code
+mov ax, [var1] ; copy the value at memory location var1 into ax
+
+
+;The stack is a Last In First Out (LIFO) data structure; data is pushed onto it and popped off of it in the reverse order.
+
+mov ax, 006Ah
+mov bx, F79Ah
+mov cx, 1124h
+
+push ax ; push the value in AX onto the top of the stack, which now holds the value 0x006A.
+push bx ; do the same thing to the value in BX; the stack now has 0x006A and 0xF79A.
+push cx ; now the stack has 0x006A, 0xF79A, and 0x1124.
+
+call do_stuff ; do some stuff. The function is not forced to save the registers it uses, hence us saving them.
+
+pop cx ; pop the element on top of the stack, 0x1124, into CX; the stack now has 0x006A and 0xF79A.
+pop bx ; pop the element on top of the stack, 0xF79A, into BX; the stack now has just 0x006A.
+pop ax ; pop the element on top of the stack, 0x006A, into AX; the stack is now empty.
+;The Stack is usually used to pass arguments to functions or procedures and also to keep track of control flow when the call instruction is used. The other common use of the Stack is temporarily saving registers.
+
+
+
+FUNCTIONS: https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
