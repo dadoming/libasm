@@ -5,10 +5,6 @@
 // It is forbidden to use the compilation flag: -no-pie.
 // Your file will have to be called libasm.a
 
-// in my main i shall test the ft_strlen function
-// but i need the include the header file
-// and i need to compile the libasm.a file
-
 #include "inc/libasm.h"
 
 int main(void)
