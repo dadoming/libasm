@@ -16,7 +16,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g -Iincludes
 LFLAGS = -L. -lasm
 
-# Build rule
 all: $(LIBRARY)
 
 $(LIBRARY): $(OBJS)
