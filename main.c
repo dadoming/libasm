@@ -1,22 +1,9 @@
-// You must write 64 bits ASM. Beware of the "calling convention".
-// You can’t do inline ASM, you must do ’.s’ files.
-// You must compile your assembly code with nasm.
-// You must use the Intel syntax, not the AT&T.
-// It is forbidden to use the compilation flag: -no-pie.
-// Your file will have to be called libasm.a
-
-#include "inc/libasm.h"
+#include <libasm.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <stdio.h>
 #include <unistd.h>
-
-enum show
-{
-    NO,
-    YES
-};
 
 #define BUF_SIZE 128
 #define INVALID_FD -1
@@ -28,10 +15,15 @@ enum show
 #define FT_STRCMP(s) ((s == YES) ? (printf("\nFT_STRCMP\n"), 1) : 0)
 #define FT_STRDUP(s) ((s == YES) ? (printf("\nFT_STRDUP\n"), 1) : 0)
 
+enum show
+{
+    NO,
+    YES
+};
+
 int main(void)
 {
-
-    if (FT_STRLEN(NO))
+    if (FT_STRLEN(YES))
     {
         char *str = "Hello World!\n";
         char *empty = "";
@@ -46,34 +38,33 @@ int main(void)
         printf("%d\n", ft_len);
     }
 
-    if (FT_WRITE(NO))
+    if (FT_WRITE(YES))
     {
         char *str = "Hello World!\n";
         int len = ft_strlen(str);
-
         int bytes_written = ft_write(VALID_FD, str, len);
         if (bytes_written < 0)
         {
-            printf("ft_write failed: %s\n", strerror(errno));
+            perror("ft_write failed");
         }
         printf("bytes_written: %d\n", bytes_written);
 
         bytes_written = ft_write(INVALID_FD, str, len);
         if (bytes_written < 0)
         {
-            printf("ft_write failed: %s\n", strerror(errno));
+            perror("ft_write failed");
         }
         printf("bytes_written: %d\n", bytes_written);
     }
 
-    if (FT_READ(NO))
+    if (FT_READ(YES))
     {
         char s1[BUF_SIZE];
         int bytes_read = ft_read(VALID_FD, s1, BUF_SIZE);
         printf("\n");
         if (bytes_read < 0)
         {
-            printf("\nft_read failed\n");
+            perror("ft_read failed");
         }
         s1[bytes_read] = '\0';
         printf("s1: %sn: %d\n", s1, bytes_read);
@@ -82,25 +73,21 @@ int main(void)
         bytes_read = ft_read(INVALID_FD, s2, BUF_SIZE);
         if (bytes_read < 0)
         {
-            printf("\nft_read failed\n");
+            perror("ft_read failed");
         }
         printf("s2: %sn: %d\n", s2, bytes_read);
     }
 
-    if (FT_STRCPY(NO))
+    if (FT_STRCPY(YES))
     {
-        char dest[BUF_SIZE] = "";
+        char *dest = malloc(13);
         char *str = "Hello World!";
         ft_strcpy(dest, str);
-        if (ft_strlen(dest) == 0)
-        {
-            printf("ft_strcpy failed\n");
-            return 1;
-        }
         printf("dest: %s\n", dest);
+        free(dest);
     }
 
-    if (FT_STRCMP(NO))
+    if (FT_STRCMP(YES))
     {
         char *s1 = "ABC";
         char *s2 = "ABC";
@@ -121,17 +108,23 @@ int main(void)
 
     if (FT_STRDUP(YES))
     {
-        char *str = "Hello World!";
-        char *dup = ft_strdup(str);
-
-
-        //if (dup == NULL)
-        //{
-        //    printf("ft_strdup failed\n");
-        //    return 1;
-        //}
+        char *dup = ft_strdup("Hello World!\n");
+        if (dup == NULL)
+        {
+            perror("ft_strdup failed");
+            return 1;
+        }
         printf("dup: %s\n", dup);
         free(dup);
-        return 0;
+
+        char *empty = "";
+        dup = ft_strdup(empty);
+        if (dup == NULL)
+        {
+            printf("ft_strdup failed\n");
+            return 1;
+        }
+        printf("dup: %s\n", dup);
+        free(dup);
     }
 }

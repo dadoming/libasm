@@ -13,20 +13,17 @@ OBJS =$(addprefix $(OBJ_FOLDER)/, $(ASM_FILES:.s=.o))
 INC = inc
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -Iincludes
+CFLAGS = -Wall -Wextra -Werror -g -I$(INC)
 LFLAGS = -L. -lasm
 
 all: $(LIBRARY)
 
 $(LIBRARY): $(OBJS)
 	@mkdir -p $(dir $@)
-	@ar rcs $@ $(LIBRARY) $^
+	@ar rcs $@ $(OBJS)
 
 $(OBJ_FOLDER)/%.o: $(SRC_FOLDER)/%.s
 	@mkdir -p $(dir $@)
-	@$(NASM) $(NASM_FLAGS) $< -o $@
-
-%.o: %.s
 	@$(NASM) $(NASM_FLAGS) $< -o $@
 
 clean:
