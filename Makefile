@@ -4,7 +4,7 @@ NASM = nasm
 NASM_FLAGS = -f elf64
 
 SRC_FOLDER = src
-ASM_FILES = ft_strlen.s ft_write.s ft_read.s ft_strcpy.s ft_strdup.s
+ASM_FILES = ft_strlen.s ft_write.s ft_read.s ft_strcpy.s ft_strdup.s ft_strcmp.s
 SRCS = $(addprefix $(SRC_FOLDER)/, $(ASM_FILES))
 
 OBJ_FOLDER = obj
