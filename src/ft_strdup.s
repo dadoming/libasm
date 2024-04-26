@@ -8,9 +8,10 @@ extern ft_strcpy
 extern __errno_location
 
 ft_strdup:
-  ; Arguments:
-  ;  rdi - const char *s1
-  xor rax, rax          ; set rax to 0
+; Arguments:
+;  rdi - const char *s1
+; Return:
+;  rax - pointer to the new allocated string
 
   cmp rdi, 0
   je done
@@ -22,18 +23,15 @@ ft_strdup:
   push rdi
   mov rdi, rax          ; store the length of the string in rdi
   call malloc wrt ..plt ; here one would link with -no-pie, since we can't use it, then we use the PLT(Procedure Linkage Table) to call malloc
-  test rax, rax         ; check if malloc failed
+  test rax, rax         ; check malloc failed
   jz malloc_failed      ; jump if zero
   pop rdi               ; pop the original string into rdi
-
 
   mov rsi, rdi
   mov rdi, rax
   call ft_strcpy
   ret
 
-
-  jmp done
   done:
     ret
 

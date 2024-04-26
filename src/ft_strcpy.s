@@ -4,11 +4,11 @@ section .text
 extern ft_strlen
 
 ft_strcpy:
-    ; Arguments:
-    ;   rdi: Destination pointer (char* dest)
-    ;   rsi: Source pointer (const char* src)
-    ; Return:
-    ;   rax: Destination pointer (char* dest)
+; Arguments:
+;   rdi: Destination pointer (char* dest)
+;   rsi: Source pointer (const char* src)
+; Return:
+;   rax: Destination pointer (char* dest)
 
   mov rdx, 0              ; Initialize the counter
   loop:

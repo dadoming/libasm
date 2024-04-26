@@ -4,12 +4,12 @@ section .text
 extern __errno_location
 
 ft_write:
-  ; Arguments:
-  ;   rdi: file descriptor
-  ;   rsi: buffer
-  ;   rdx: count
-  ; Return:
-  ;   rax: number of bytes written
+; Arguments:
+;   rdi: file descriptor
+;   rsi: buffer
+;   rdx: count
+; Return:
+;   rax: number of bytes written on success, -1 on error
 
     mov rax, 1    ; write syscall
     syscall

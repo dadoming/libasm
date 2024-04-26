@@ -2,13 +2,12 @@ global ft_strcmp
 
 section .text
 
-
 ft_strcmp:
-  ; Arguments:
-  ;   rdi: first string
-  ;   rsi: second string
-  ; Return:
-  ;   rax: 0 if strings are equal, positive if first string is greater, negative if second string is greater
+; Arguments:
+;   rdi: first string
+;   rsi: second string
+; Return:
+;   rax: 0 if strings are equal, positive if first string is greater, negative if second string is greater
 
   loop:
 	mov al, [rdi]
