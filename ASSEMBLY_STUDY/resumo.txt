@@ -1,0 +1,44 @@
+
+
+Registers:
+rax: Return value register. Used to store the return value of functions.
+rdi, rsi, rdx: Argument registers. Used to pass arguments to functions.
+rbx: General-purpose register. Used for general storage.
+rcx, r8, r9: Additional argument registers. Used for passing arguments beyond the first three.
+rsp: Stack pointer. Points to the top of the stack.
+
+Operations:
+mov: Move data from one location to another.
+add: Add two values.
+sub: Subtract one value from another.
+mul: Multiply two values.
+div: Divide one value by another.
+cmp: Compare two values.
+jmp: Unconditional jump to a specified location.
+je: Jump if equal (used for conditional branching).
+call: Call a function.
+ret: Return from a function.
+syscall: System call instruction. Used to make requests to the operating system.
+movzx: Move with zero extension. Used to move data from a smaller register to a larger register. The upper bits are filled with zeros.
+
+
+__errno_location: Function that returns the address of the errno variable,
+	which is used to store error codes.
+
+[] is similar to a pointer in C. It is used to access memory at a specific address.
+
+syscalls:
+0: sys_read
+1: sys_write
+2: sys_open
+3: sys_close
+60: sys_exit
+
+BYTE is a directive that reserves space for a single byte in memory.
+
+section .data: Section for storing data.
+section .text: Section for storing code.
+
+
+	; movzx makes sure that the value is zero extended, meaning that the upper bits are set to zero
+	; while mov just copies the value as is and the upper bits are not cleared (set to 0)

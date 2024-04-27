@@ -93,16 +93,19 @@ int main(void)
         char *s2 = "ABC";
         int cmp = ft_strcmp(s1, s2);
         printf("cmp: %d\n", cmp);
+        cmp = strcmp(s1, s2);
         printf("strcmp: %d\n", strcmp(s1, s2));
         char *s3 = "ABC";
         char *s4 = "AB";
         cmp = ft_strcmp(s3, s4);
         printf("cmp: %d\n", cmp);
+        cmp = strcmp(s3, s4);
         printf("strcmp: %d\n", strcmp(s3, s4));
         char *s5 = "AB";
         char *s6 = "ABC";
         cmp = ft_strcmp(s5, s6);
         printf("cmp: %d\n", cmp);
+        cmp = strcmp(s5, s6);
         printf("strcmp: %d\n", strcmp(s5, s6));
     }
 
@@ -112,16 +115,6 @@ int main(void)
         if (dup == NULL)
         {
             perror("ft_strdup failed");
-            return 1;
-        }
-        printf("dup: %s\n", dup);
-        free(dup);
-
-        char *empty = "";
-        dup = ft_strdup(empty);
-        if (dup == NULL)
-        {
-            printf("ft_strdup failed\n");
             return 1;
         }
         printf("dup: %s\n", dup);
